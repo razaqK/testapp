@@ -1,3 +1,75 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+
+create_product:
+  path: /api/product
+  controller: App\Controller\ProductController::create
+  methods:  [POST]
+  defaults:
+    role: ROLE_USER
+    skip_auth: 1
+
+create_bundle:
+  path: /api/product/bundle
+  controller: App\Controller\ProductController::createBundle
+  methods:  [POST]
+  defaults:
+    role: ROLE_ADMIN
+    skip_auth: 1
+
+get_products:
+  path: /api/products
+  controller: App\Controller\ProductController::getProducts
+  methods:  [GET]
+  defaults:
+    role: ROLE_USER
+    skip_auth: 1
+
+get_product:
+  path: /api/product/{id}
+  controller: App\Controller\ProductController::getSingleProduct
+  methods:  [GET]
+  defaults:
+    role: ROLE_USER
+    skip_auth: 1
+
+update_product:
+  path: /api/product/{id}
+  controller: App\Controller\ProductController::updateProduct
+  methods:  [PUT]
+  defaults:
+    role: ROLE_ADMIN
+    skip_auth: 1
+
+place_order:
+  path: /api/order
+  controller: App\Controller\OrderController::placeOrder
+  methods:  [POST]
+  defaults:
+    role: ROLE_USER
+    skip_auth: 1
+
+get_order:
+  path: /api/order/{id}
+  controller: App\Controller\OrderController::getOrder
+  methods:  [GET]
+  defaults:
+    role: ROLE_USER
+    skip_auth: 1
+
+get_customer_order:
+  path: /api/customer/{id}/orders
+  controller: App\Controller\AuthController::getCustomerOrders
+  methods:  [GET]
+  defaults:
+    role: ROLE_USER
+    skip_auth: 1
+
+auth:
+  path: /api/auth
+  controller: App\Controller\AuthController::generateJWTToken
+  methods:  [POST]
+  defaults:
+    skip_auth: 0
